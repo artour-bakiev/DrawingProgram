@@ -1,14 +1,14 @@
 package ab.dp.commands;
 
 import ab.dp.Command;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class CommandBuilderTest {
+public class CommandBuilderTest {
 
     @Test
-    void shouldBuildCreateCanvasCommand() {
+    public void shouldBuildCreateCanvasCommand() {
         shouldBuildCommand(new String[]{
                         "C 40 30",
                         "C 30 30 x",
@@ -18,7 +18,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldFailToBuildCreateCanvasCommand() {
+    public void shouldFailToBuildCreateCanvasCommand() {
         shouldFailToBuildCommand(new String[]{
                 "C 40x 30",
                 "C 40 30x",
@@ -29,7 +29,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldBuildCreateLineCommand() {
+    public void shouldBuildCreateLineCommand() {
         shouldBuildCommand(new String[]{
                         "L 2 3 5 12",
                         "L 3 2 10 2 x"
@@ -38,7 +38,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldFailToBuildCreateLineCommand() {
+    public void shouldFailToBuildCreateLineCommand() {
         shouldFailToBuildCommand(new String[]{
                 "L 2 3 10 12d",
                 "L 2 2 10 -1",
@@ -50,7 +50,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldBuildCreateRectangleCommand() {
+    public void shouldBuildCreateRectangleCommand() {
         shouldBuildCommand(new String[]{
                         "R 2 3 10 12",
                         "R 2 2 10 12 x"
@@ -59,7 +59,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldFailToBuildCreateRectangleCommand() {
+    public void shouldFailToBuildCreateRectangleCommand() {
         shouldFailToBuildCommand(new String[]{
                 "R 2 3 10 12d",
                 "R 2 2 10 -1",
@@ -71,7 +71,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldBuildBucketFillCommand() {
+    public void shouldBuildBucketFillCommand() {
         shouldBuildCommand(new String[]{
                         "B 2 3 c",
                         "B 2 2 !",
@@ -81,7 +81,7 @@ class CommandBuilderTest {
     }
 
     @Test
-    void shouldFailToBuildBucketFillCommand() {
+    public void shouldFailToBuildBucketFillCommand() {
         shouldFailToBuildCommand(new String[]{
                 "B 2 3 10",
                 "B 2 2 -1",
@@ -92,7 +92,7 @@ class CommandBuilderTest {
         });
     }
 
-    private void shouldBuildCommand(String userInput[], Class<?> commandClass) {
+    private void shouldBuildCommand(String[] userInput, Class<?> commandClass) {
         final CommandBuilder commandBuilder = new CommandBuilder();
         for (String s : userInput) {
             final Command command = commandBuilder.build(s);
@@ -102,7 +102,7 @@ class CommandBuilderTest {
         }
     }
 
-    private void shouldFailToBuildCommand(String userInput[]) {
+    private void shouldFailToBuildCommand(String[] userInput) {
         final CommandBuilder commandBuilder = new CommandBuilder();
         for (String s : userInput) {
             final Command command = commandBuilder.build(s);

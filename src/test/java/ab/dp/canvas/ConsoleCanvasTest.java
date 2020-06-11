@@ -1,13 +1,13 @@
 package ab.dp.canvas;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ConsoleCanvasTest {
+public class ConsoleCanvasTest {
 
     @Test
-    void invalidArgumentsShouldThrowAnException() {
+    public void invalidArgumentsShouldThrowAnException() {
         try {
             new ConsoleCanvas(-1, 1);
             fail("ConsoleCanvas() should thrown IllegalArgumentException");
@@ -22,7 +22,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void freshlyCreatedShouldBeEmpty() {
+    public void freshlyCreatedShouldBeEmpty() {
         int width = 20;
         int height = 10;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -33,7 +33,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void shouldAddVerticalLine() {
+    public void shouldAddVerticalLine() {
         int width = 29;
         int height = 48;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -42,12 +42,12 @@ class ConsoleCanvasTest {
 
         assertTrue(canvas.addLine(x1, y1, x1, height));
         for (int row = y1; row != height + 1; ++row) {
-            assertEquals('x', canvas.buffer[row][x1], "buffer[" + row + "][" + x1 + ']');
+            assertEquals("buffer[" + row + "][" + x1 + ']', 'x', canvas.buffer[row][x1]);
         }
     }
 
     @Test
-    void shouldAddHorizontalLine() {
+    public void shouldAddHorizontalLine() {
         int width = 33;
         int height = 12;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -56,12 +56,12 @@ class ConsoleCanvasTest {
 
         assertTrue(canvas.addLine(x1, y1, width, y1));
         for (int column = x1; column != width + 1; ++column) {
-            assertEquals('x', canvas.buffer[y1][column], "buffer[" + y1 + "][" + column + ']');
+            assertEquals("buffer[" + y1 + "][" + column + ']', 'x', canvas.buffer[y1][column]);
         }
     }
 
     @Test
-    void shouldNotAddLine() {
+    public void shouldNotAddLine() {
         int width = 13;
         int height = 4;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -79,7 +79,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void shouldAddRectangle() {
+    public void shouldAddRectangle() {
         int left = 1;
         int top = 1;
         int width = 91;
@@ -88,17 +88,17 @@ class ConsoleCanvasTest {
 
         assertTrue(canvas.addRect(left, top, width, height));
         for (int column = left; column != width + 1; ++column) {
-            assertEquals('x', canvas.buffer[top][column], "buffer[" + top + "][" + column + ']');
-            assertEquals('x', canvas.buffer[height][column], "buffer[" + height + "][" + column + ']');
+            assertEquals("buffer[" + top + "][" + column + ']', 'x', canvas.buffer[top][column]);
+            assertEquals("buffer[" + height + "][" + column + ']', 'x', canvas.buffer[height][column]);
         }
         for (int row = top + 1; row != height; ++row) {
-            assertEquals('x', canvas.buffer[row][left], "buffer[" + row + "][" + left + ']');
-            assertEquals('x', canvas.buffer[row][width], "buffer[" + row + "][" + width + ']');
+            assertEquals("buffer[" + row + "][" + left + ']', 'x', canvas.buffer[row][left]);
+            assertEquals("buffer[" + row + "][" + width + ']', 'x', canvas.buffer[row][width]);
         }
     }
 
     @Test
-    void shouldNotAddRectangle() {
+    public void shouldNotAddRectangle() {
         int width = 14;
         int height = 99;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -112,7 +112,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void shouldFillWholeBuffer() {
+    public void shouldFillWholeBuffer() {
         int width = 91;
         int height = 8;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -121,13 +121,13 @@ class ConsoleCanvasTest {
         assertTrue(canvas.addBucketFill(5, 5, color));
         for (int row = 1; row != canvas.buffer.length - 1; ++row) {
             for (int column = 1; column != canvas.buffer[0].length - 1; ++column) {
-                assertEquals(color, canvas.buffer[row][column], "buffer[" + row + "][" + column + ']');
+                assertEquals("buffer[" + row + "][" + column + ']', color, canvas.buffer[row][column]);
             }
         }
     }
 
     @Test
-    void shouldKeepEmptyColor() {
+    public void shouldKeepEmptyColor() {
         int width = 21;
         int height = 83;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -137,7 +137,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void shouldKeepTargetColor() {
+    public void shouldKeepTargetColor() {
         int width = 52;
         int height = 13;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -149,7 +149,7 @@ class ConsoleCanvasTest {
     }
 
     @Test
-    void shouldNotAddBucketFill() {
+    public void shouldNotAddBucketFill() {
         int width = 14;
         int height = 33;
         ConsoleCanvas canvas = new ConsoleCanvas(width, height);
@@ -163,7 +163,7 @@ class ConsoleCanvasTest {
     private void bufferShouldBeEmpty(ConsoleCanvas canvas) {
         for (int row = 1; row != canvas.buffer.length - 1; ++row) {
             for (int column = 1; column != canvas.buffer[0].length - 1; ++column) {
-                assertEquals(' ', canvas.buffer[row][column], "buffer[" + row + "][" + column + ']');
+                assertEquals("buffer[" + row + "][" + column + ']', ' ', canvas.buffer[row][column]);
             }
         }
     }
